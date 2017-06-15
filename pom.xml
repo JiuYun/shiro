@@ -8,9 +8,6 @@
     <artifactId>shiro</artifactId>
     <version>1.0-SNAPSHOT</version>
     <modules>
-        <module>shiro-chapter1</module>
-        <module>shiro-chapter6</module>
-        <module>shiro-chapter7</module>
     </modules>
     <packaging>pom</packaging>
 
