@@ -1,8 +1,10 @@
 package com.test.shiro;
 
 import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.config.IniSecurityManagerFactory;
+import org.apache.shiro.mgt.SecurityManager;
 import org.apache.shiro.subject.Subject;
 import org.apache.shiro.util.Factory;
 import org.junit.Assert;
@@ -19,52 +21,60 @@ public class LoginLogoutTest {
 
 
 
+
+
+
+
+
+
+
+
+
     @Test
-    public void testHelloWorld(){
-        parent("classpath:shiro.ini");
+    public void oneRealm(){
+        this.parent("classpath:shiro-realm.ini");
     }
 
 
-    public void testMultiRealm(){
-        parent("classpath:shiro-multi-realm.ini");
+    @Test
+    public void first(){
+        this.parent("classpath:shiro.ini");
     }
 
 
 
-    public void parent(String ini){
-        //1.获取SecurityManager工厂，此处使用ini文件初始化SecurityManager
-//        Factory<org.apache.shiro.mgt.SecurityManager> SMF = new IniSecurityManagerFactory("classpath:shiro.ini");
-        Factory<org.apache.shiro.mgt.SecurityManager> SMF = new IniSecurityManagerFactory(ini);
-        //2.得到SecurityManager 实例并绑定到SecurityUtils
-        org.apache.shiro.mgt.SecurityManager securityManager = SMF.getInstance();
-        SecurityUtils.setSecurityManager(securityManager);
 
-        //3.得到Subject，及创建用户名/密码身份证验证Token
+
+
+
+    public void parent(String iniPath){
+        //1.得到SecurityManagerFactory
+        Factory<SecurityManager> factory = new IniSecurityManagerFactory(iniPath);
+
+        //2.得到SecurityManager 并绑定到SecurityUtil,这个是全局设置整个应用绑定一次就够了
+        SecurityManager manager = factory.getInstance();
+        SecurityUtils.setSecurityManager(manager);
+
+        //3.取得Subject及创建用户token
         Subject subject = SecurityUtils.getSubject();
-        UsernamePasswordToken token = new UsernamePasswordToken("zhang","123");
+        UsernamePasswordToken token = new UsernamePasswordToken("zs","123456");
 
+        //4.登陆
         try{
-
-            //登录，验证身份
             subject.login(token);
-        }catch(Exception e){
-
-            //登录失败
+        }catch(AuthenticationException e){
+            //身份验证失败
         }
 
-        Assert.assertEquals(true,subject.isAuthenticated());                //断言用户已经登录
+        //5.断言用户是否已经登陆
+        Assert.assertEquals(true,subject.isAuthenticated());
 
+
+        //6.退出
         subject.logout();
+
+
     }
-
-
-
-
-
-
-
-
-
 
 
 

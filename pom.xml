@@ -10,8 +10,14 @@
     <modules>
         <module>charpt1</module>
         <module>charpt2</module>
+        <module>charpt3</module>
+        <module>charpt4</module>
+        <module>charpt5</module>
+        <module>charpt10</module>
+        <module>charpt12</module>
     </modules>
     <packaging>pom</packaging>
+
 
 
 </project>
