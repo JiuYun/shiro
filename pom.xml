@@ -16,6 +16,7 @@
         <module>charpt10</module>
         <module>charpt12</module>
         <module>charpt13</module>
+        <module>chapter16</module>
     </modules>
     <packaging>pom</packaging>
 
