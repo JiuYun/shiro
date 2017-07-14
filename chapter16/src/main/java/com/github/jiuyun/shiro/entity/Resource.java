@@ -14,7 +14,7 @@ public class Resource implements Serializable{
     private String url;
     private String permission;
     private Long parentId;
-    private Long parentIds;
+    private String parentIds;
     private Boolean available = Boolean.FALSE;
 
 
@@ -80,11 +80,11 @@ public class Resource implements Serializable{
         this.parentId = parentId;
     }
 
-    public Long getParentIds() {
+    public String getParentIds() {
         return parentIds;
     }
 
-    public void setParentIds(Long parentIds) {
+    public void setParentIds(String parentIds) {
         this.parentIds = parentIds;
     }
 
@@ -95,4 +95,9 @@ public class Resource implements Serializable{
     public void setAvailable(Boolean available) {
         this.available = available;
     }
+
+    public String makeSelfAsParentIds() {
+        return getParentIds() + getId() + "/";
+    }
 }
+
