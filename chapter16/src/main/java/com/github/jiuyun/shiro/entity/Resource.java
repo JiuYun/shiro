@@ -96,6 +96,10 @@ public class Resource implements Serializable{
         this.available = available;
     }
 
+    public boolean isRootNode() {
+        return parentId == 0;
+    }
+
     public String makeSelfAsParentIds() {
         return getParentIds() + getId() + "/";
     }
