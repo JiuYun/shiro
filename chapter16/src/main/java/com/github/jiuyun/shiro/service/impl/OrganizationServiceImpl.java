@@ -1,7 +1,8 @@
 package com.github.jiuyun.shiro.service.impl;
 
-import com.github.zhangkaitao.shiro.chapter16.dao.OrganizationDao;
-import com.github.zhangkaitao.shiro.chapter16.entity.Organization;
+import com.github.jiuyun.shiro.dao.OrganizationDao;
+import com.github.jiuyun.shiro.entity.Organization;
+import com.github.jiuyun.shiro.service.OrganizationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
