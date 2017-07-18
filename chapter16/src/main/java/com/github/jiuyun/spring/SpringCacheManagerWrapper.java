@@ -87,6 +87,7 @@ public class SpringCacheManagerWrapper implements CacheManager {
         @Override
         public Collection values() {
             if(springCache.getNativeCache() instanceof Ehcache) {
+
                 Ehcache ehcache = (Ehcache) springCache.getNativeCache();
                 List keys = ehcache.getKeys();
                 if (!CollectionUtils.isEmpty(keys)) {
